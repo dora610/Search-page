@@ -5,7 +5,8 @@ const userList = [
   { name: "Himanshu", age: 30, city: "Delhi" },
   { name: "Tina", age: 10, city: "San Francisco" },
 ];
-const search = document.querySelector('.wrapper input[name="search"]');
+
+const search = document.querySelector(".search");
 const result = document.querySelector(".search-result>ul");
 
 function showResult(list) {
@@ -23,9 +24,15 @@ function showResult(list) {
 }
 
 function handleInput(e) {
-  const searchResult = userList.filter((ele) =>
-    ele.name.toLocaleLowerCase().includes(e.target.value.toLocaleLowerCase())
+  const nameVal = e.currentTarget.querySelector('input[name="name"]').value;
+  const cityVal = e.currentTarget.querySelector('input[name="city"]').value;
+
+  const searchResult = userList.filter(
+    (ele) =>
+      ele.name.toLocaleLowerCase().includes(nameVal.toLocaleLowerCase()) &&
+      ele.city.toLocaleLowerCase().includes(cityVal.toLocaleLowerCase())
   );
+
   showResult(searchResult);
 }
 
